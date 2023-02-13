@@ -4,7 +4,8 @@
 		// Timezone
 		helper('date');
 		timezone_select('America/Sao_Paulo');
-		
-		// Composer Autoloader
-		require VENDORPATH.'autoload.php';
+	}
+
+	function rcTitle() {
+		return 'Rádio Clube de Pelotas';
 	}

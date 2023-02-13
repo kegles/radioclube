@@ -10,6 +10,6 @@ class Home extends BaseController
     public function index()
     {
 		rcStartup();
-        return view('welcome_message');
+        return view('entrar');
     }
 }
