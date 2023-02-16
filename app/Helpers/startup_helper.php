@@ -2,10 +2,9 @@
 
 	function rcStartup() {
 		// Timezone
-		helper('date');
 		timezone_select('America/Sao_Paulo');
 	}
 
-	function rcTitle() {
-		return 'Rádio Clube de Pelotas';
+	function rcTitle($titleArray=array()) {
+		return 'Rádio Clube de Pelotas' . (count($titleArray)>0?chr(32).'-'.chr(32):null) . implode(chr(32).chr(45).chr(32),$titleArray);
 	}

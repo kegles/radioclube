@@ -8,7 +8,8 @@
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.0",
         "almasaeed2010/adminlte": "~3.2",
-        "components/jquery": "^3.6"
+        "components/jquery": "^3.6",
+        "igorescobar/jquery-mask-plugin": "^1.14"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",

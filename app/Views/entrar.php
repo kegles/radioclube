@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?=rcTitle(); ?></title>
+  <title><?=rcTitle(array(_('Entrar'))); ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,7 +26,7 @@
 
       <form method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="<?=_('E-mail');?>">
+          <input type="email" name="email" class="form-control" placeholder="<?=_('E-mail');?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="<?=_('Senha');?>">
+          <input type="password" name="senha" class="form-control" placeholder="<?=_('Senha');?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -44,8 +44,8 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
+              <input type="checkbox" name="lembrar" id="lembrar">
+              <label for="lembrar">
                 <?=_('Lembrar dados');?>
               </label>
             </div>
@@ -59,10 +59,10 @@
       </form>
 
       <p class="mb-1">
-        <a href="<?=base_url('recuperacao');?>"><?=_('Esqueci minha senha');?></a>
+        <a href="<?=base_url('recuperar-senha');?>"><?=_('Esqueci minha senha');?></a>
       </p>
       <p class="mb-0">
-        <a href="<?=base_url('registro');?>" class="text-center"><?=_('Registrar-se');?></a>
+        <a href="<?=base_url('associe-se');?>" class="text-center text-bold"><?=_('Associe-se agora mesmo');?></a>
       </p>
     </div>
     <!-- /.login-card-body -->
@@ -74,7 +74,7 @@
 <script src="<?=base_url('vendor/components/jquery/jquery.min.js')?>"></script>
 <script src="<?=base_url('vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js')?>"></script>
 <script type="text/javascript">
-  $(document).ready(function() { $('input')[0].focus(); });
+  $(document).ready(function() { $('input[name="email"]').focus(); });
 </script>
 </body>
 </html>
