@@ -25,6 +25,21 @@
       <p class="login-box-msg"><?=_('Digite suas informações para entrar');?></p>
 
       <form method="post">
+
+        <?php if (session()->getFlashdata('error')): ?>
+          <div class="pb-2 mb-3 alert alert-danger alert-dismissible">
+            <h5><i class="icon fas fa-ban"></i> <?=_('Erro');?></h5>
+            <?=session()->getFlashdata('error');?>
+          </div>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('success')): ?>
+          <div class="pb-2 mb-3 alert alert-success alert-dismissible">
+            <h5><i class="icon fas fa-check"></i> <?=_('Sucesso');?></h5>
+            <?=session()->getFlashdata('success');?>
+          </div>
+        <?php endif; ?>
+
         <div class="input-group mb-3">
           <input type="email" name="email" class="form-control" placeholder="<?=_('E-mail');?>">
           <div class="input-group-append">

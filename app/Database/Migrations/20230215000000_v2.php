@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Socio extends Migration {
+class dbv2 extends Migration {
 
     public function up() {
         $this->forge->addColumn('socios',[
@@ -23,6 +23,10 @@ class Socio extends Migration {
                 'constraint' => 14,
                 'null' => false,
                 'unique' => true,
+            ],
+            'dataNascimento' => [
+                'type' => 'DATE',
+                'null' => false
             ]
         ]);
     }

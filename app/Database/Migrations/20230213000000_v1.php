@@ -4,12 +4,24 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Socio extends Migration {
+class dbv1 extends Migration {
 
     public function up() {
         $this->forge->addField([
+            '_created' => [
+                'type' => 'TIMESTAMP',
+                'null' => true
+            ],
+            '_updated' => [
+                'type' => 'TIMESTAMP',
+                'null' => true
+            ],
+            '_deleted' => [
+                'type' => 'TIMESTAMP',
+                'null' => true
+            ],                        
             'id' => [
-                'type' => 'int',
+                'type' => 'INT',
                 'auto_increment' => true
             ],
             'email' => [
