@@ -12,7 +12,3 @@
 	function rcDateToDb($date) {
 		return date_create_from_format(_('d/m/Y'),$date)->format('Y-m-d');
 	} 
-
-	function rcPassword($pass) {
-		return password_hash($pass,PASSWORD_BCRYPT);
-	}

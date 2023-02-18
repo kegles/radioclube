@@ -41,25 +41,31 @@
         <?php endif; ?>
 
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="<?=_('E-mail');?>">
+          <input type="email" name="email" class="form-control <?=isset(session()->getFlashdata('errors')['email']) ? 'is-invalid':''; ?>" placeholder="<?=_('E-mail');?>"  maxlength="255" value="<?=$email;?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+          <span class="error invalid-feedback">
+            <?=session()->getFlashdata('errors')['email'] ?? ''; ?>
+          </span>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="senha" class="form-control" placeholder="<?=_('Senha');?>">
+          <input type="password" name="senha" class="form-control <?=isset(session()->getFlashdata('errors')['senha']) ? 'is-invalid':''; ?>" placeholder="<?=_('Senha');?>" maxlength="20" value="<?=$senha;?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
+          <span class="error invalid-feedback">
+            <?=session()->getFlashdata('errors')['senha'] ?? ''; ?>
+          </span>
         </div>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" name="lembrar" id="lembrar">
+              <input type="checkbox" name="lembrar" id="lembrar" <?php if ($lembrar) { echo 'checked'; } ?>>
               <label for="lembrar">
                 <?=_('Lembrar dados');?>
               </label>
@@ -89,7 +95,13 @@
 <script src="<?=base_url('vendor/components/jquery/jquery.min.js')?>"></script>
 <script src="<?=base_url('vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js')?>"></script>
 <script type="text/javascript">
-  $(document).ready(function() { $('input[name="email"]').focus(); });
+  $(document).ready(function() { 
+    <?php if (session()->getFlashdata('errors')): ?>
+        $('.invalid-feedback').show();
+    <?php endif; ?>    
+    $('input[name="email"]').focus(); 
+    $('input.is-invalid')[0].focus();
+  });
 </script>
 </body>
 </html>
