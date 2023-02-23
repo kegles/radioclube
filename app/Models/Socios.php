@@ -86,10 +86,10 @@ class Socios extends Model
                     'nome' => $data->nome,
                     'email' => $data->email
                 ];
-                session()->set($ses_data);                
+                session()->set($ses_data);
                 if ($lembrar) {
-                    set_cookie('email', $email);
-                    set_cookie('senha','hash:'.$data->senha);
+                    set_cookie('email', $email, time()+(10*365*24*60*60));
+                    set_cookie('senha','hash:'.$data->senha, time()+(10*365*24*60*60));
                 }
                 else {
                     delete_cookie('email');
@@ -107,7 +107,7 @@ class Socios extends Model
     * @return: <boolean>
     */    
     public function isLogged() {
-        return session()->get()['id']>0?true:false;
+        return (isset(session()->get()['id']) && (session()->get()['id']>0))?true:false;
     }
 
     /*
@@ -115,7 +115,8 @@ class Socios extends Model
     * @description: sai do sistema
     */    
     public function logout() {
-        return session()->set(['id'=>null,'nome'=>null,'email'=>null]);
+        $sessdata = ['id'=>null,'nome'=>null,'email'=>null];
+        return session()->set($sessdata);
     }
 
 

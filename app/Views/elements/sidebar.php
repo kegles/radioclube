@@ -21,7 +21,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="min-height:800px">
 
           <li class="nav-item">
-            <a href="<?=base_url();?>" class="nav-link active">
+            <a href="<?=base_url();?>" class="nav-link <?=uri_string()=='/'?'active':null;?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 <?=_('Painel do associado');?>
@@ -30,7 +30,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?=base_url('sair');?>" class="nav-link">
+            <a href="<?=base_url('sair');?>" class="nav-link <?=uri_string()=='/sair'?'active':null;?>">
             <i class="nav-icon fas fa-solid fa-unlock"></i>
               <p>
                 <?=_('Sair do sistema');?>

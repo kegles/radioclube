@@ -35,6 +35,7 @@ $routes->post('/associe-se','Associese::associarPost');
 $routes->get('/entrar','Entrar::index');
 $routes->post('/entrar','Entrar::entrarPost');
 $routes->get('/sair','Entrar::sair');
+$routes->get('/atualizar-dados','AtualizarDados::index');
 
 /*
  * --------------------------------------------------------------------
