@@ -24,34 +24,40 @@
     <section class="content mr-3 ml-3">
         <div class="row">
             <div class="col-md-6">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title"><?= _('Geral'); ?></h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="txtNomeCompleto">Nome completo</label>
-                            <input type="text" id="txtNomeCompleto" class="form-control" value="">
+                <form method="post">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title"><?= _('Geral'); ?></h3>
                         </div>
-                        <div class="form-group">
-                            <label for="txtEmail">Endereço de e-mail &nbsp;&nbsp; <small>(será usado para entrar na Área de Sócios)</small></label>
-                            <input type="text" id="txtEmail" class="form-control" value="">
-                        </div>  
-                        <div class="form-group">
-                            <label for="txtTelefone">Telefone/WhatsApp</label>
-                            <input type="text" id="txtTelefone" class="form-control" value="">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>CPF</label>
+                                <p><?=$cpf;?></p>
+                            </div>  
+                            <div class="form-group">
+                                <label>Nome completo</label>
+                                <p><?=$nome;?></p>
+                            </div>     
+                            <div class="form-group">
+                                <label>Data de nascimento</label>
+                                <p><?=rcDateFromDb($dataNascimento);?></p>
+                            </div>                                                    
+                            <div class="form-group">
+                                <label for="txtEmail">Endereço de e-mail &nbsp;&nbsp; <small>(será usado para entrar na Área de Sócios)</small></label>
+                                <input type="text" id="txtEmail" name="email" class="form-control" value="<?=$email;?>">
+                            </div>  
+                            <div class="form-group">
+                                <label for="txtTelefone">Telefone/WhatsApp</label>
+                                <input type="text" id="txtTelefone" name="telefone" class="form-control" value="<?=$telefone;?>">
+                            </div>                      
                         </div>
-                        <div class="form-group">
-                            <label for="txtDataNascimento">Data de Nascimento</label>
-                            <input type="text" id="txtDataNascimento" class="form-control" value="">
-                        </div>                        
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-success"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></button>
+                            <button type="submit" class="btn btn-primary float-right"><i class="fas fa-check mr-1"></i> <?=_('Atualizar');?></button>
+                        </div>
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-success"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></button>
-                        <button type="button" class="btn btn-primary float-right"><i class="fas fa-save mr-1"></i> <?=_('Salvar');?></button>
-                    </div>
-                </div>
+                </form>
                 <!-- /.card -->
             </div>
             <div class="col-md-6">
@@ -109,5 +115,15 @@
         </div>
         <!-- /.card -->
 </div>
-
-<?= view('elements/footer.php'); ?>
+<?php 
+    $data = array(
+        'js' => array(
+            base_url('vendor/igorescobar/jquery-mask-plugin/dist/jquery.mask.min.js'),
+            base_url('public/js/atualiza-dados.js'),
+        ),
+    ); 
+    if (isset($toastr)) {
+        $data['toastr'] = $toastr;
+    }
+    echo view('elements/footer.php',$data); 
+?>

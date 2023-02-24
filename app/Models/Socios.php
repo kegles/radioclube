@@ -119,5 +119,40 @@ class Socios extends Model
         return session()->set($sessdata);
     }
 
+    /*
+    * getUserData
+    * @description: busca dos dados que são atualizáveis do usuário
+    * @return array of data
+    */    
+    public function getUserData($onlyUpdateable=true) {
+        if (!$this->isLogged()) { return false; } 
+        $userId = session()->get()['id'];
+        $data = (new \App\Models\Socios())->where('id',$userId)->first();
+        $return = array(
+            'telefone' => $data->telefone,
+            'email' => $data->email,
+        );
+        if (!$onlyUpdateable) {
+            $return['nome'] = $data->nome;
+            $return['cpf'] = $data->cpf;
+            $return['dataNascimento'] = $data->dataNascimento;
+        }
+        return $return;
+    }
+
+    /*
+    * updateUserData
+    * @description: grava os dados que são atualizáveis pelo usuário
+    * @param: dados <array> dados do usuário (email,telefone)
+    * @return: <boolean> se atualizou
+    */
+    public function updateUserData($data) {
+        if (!$this->isLogged()) { return false; }
+        $where = 'id ='.session()->get()['id'];
+        return $this->db->table('socios')->update($data,$where);
+    }
+
+
+
 
 }

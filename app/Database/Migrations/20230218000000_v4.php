@@ -15,6 +15,9 @@ class dbv4 extends Migration {
             'indicativo' => [
                 'type' => 'VARCHAR',
                 'constraint' => 8
+            ],
+            'tipo' => [
+                'type' => 'ENUM("CA","CB","CC","PX","EE","ER")'
             ]
         ]);
         $this->forge->addPrimaryKey(['idSocio','indicativo']);
