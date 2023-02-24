@@ -148,10 +148,21 @@ class Socios extends Model
     */
     public function updateUserData($data) {
         if (!$this->isLogged()) { return false; }
-        $where = 'id ='.session()->get()['id'];
+        $where = 'id='.session()->get()['id'];
         return $this->db->table('socios')->update($data,$where);
     }
 
+
+    /*
+    * getUserLicencas
+    * @description: busca as licenças de estação (indicativos) do usuário
+    * @return: <array> dados de indicativos
+    */
+    public function getUserLicencas() {
+        if (!$this->isLogged()) { return false; }
+        $sql = 'SELECT indicativo,tipo FROM `socios-licencas` WHERE idSocio='.session()->get()['id'];
+        return $this->db->query($sql)->getResultArray();        
+    }
 
 
 

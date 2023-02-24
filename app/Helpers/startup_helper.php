@@ -16,3 +16,22 @@
 	function rcDateFromDb($date) {
 		return date_create_from_format(_('Y-m-d'),$date)->format('d/m/Y');		
 	}
+
+	function rcTipoLicencaLabel($tipo) {
+		switch ($tipo) {
+			case 'CA':
+				return 'Classe A';
+			case 'CB':
+				return 'Classe B';
+			case 'CC':
+				return 'Classe C';
+			case 'PX':
+				return 'Faixa do cidadão';
+			case 'EE':
+				return 'Estação especial';
+			case 'ER':
+				return 'Estação repetidora';
+			default:
+				return 'Não identificado';
+		}
+	}

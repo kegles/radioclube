@@ -37,7 +37,8 @@ $routes->post('/entrar','Entrar::entrarPost');
 $routes->get('/sair','Entrar::sair');
 $routes->get('/atualizar-dados','AtualizarDados::index');
 $routes->post('/atualizar-dados/dadosBasicos','AtualizarDados::atualizarDadosBasicos');
-
+$routes->post('/atualizar-dados/incluirEstacao','AtualizarDados::incluirEstacao');
+$routes->post('/atualizar-dados/excluirEstacao','AtualizarDados::excluirEstacao');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

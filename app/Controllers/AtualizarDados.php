@@ -9,7 +9,11 @@ class AtualizarDados extends BaseController
     public function index($data=[])
     {
 		rcStartup();
-        $data = array_merge($data,(new Socios())->getUserData(false));
+        $data = array_merge(
+                $data,
+                (new Socios())->getUserData(false),
+                array('licencas'=>(new Socios())->getUserLicencas()),
+        );
         return view('atualizar-dados',$data);
     }
 
@@ -22,6 +26,25 @@ class AtualizarDados extends BaseController
             $data['toastr'][] = array('type'=>'success','text'=>_('Dados atualizados com sucesso!'));
         }
 		return $this->index($data);
+    }
+
+    public function incluirEstacao() {
+        /*
+        $data = array(
+            'email' => $this->request->getPost('email'),
+            'telefone' => $this->request->getPost('telefone'),
+        );
+        if ((new Socios())->updateUserData($data)) {
+            $data['toastr'][] = array('type'=>'success','text'=>_('Dados atualizados com sucesso!'));
+        }
+        */
+        $data = [];
+        return $this->index($data);
+    }    
+
+    public function excluirEstacao() {
+        $data = [];
+        return $this->index($data);
     }
 
 }

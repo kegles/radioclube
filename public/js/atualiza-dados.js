@@ -10,7 +10,14 @@ $(document).ready(function() {
     $('input[name="telefone"]').mask(phoneMaskBehavior, phoneOptions);
     $('input[name="email"]').focus(); 
     if ($('input.is-invalid')[0]) {
-        console.log('teste');
         $('input.is-invalid')[0].focus();
     }
+    $('button.apagarLicenca').on('click',function () {
+        $(this).parents('form').submit(); 
+    });
+    $('#addLicenca').on('shown.bs.modal', function (e) {
+        setTimeout(function() {
+            $('div#addLicenca input#txtModalIndicativo').focus();
+        },200);
+    });
   });
