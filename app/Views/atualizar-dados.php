@@ -24,7 +24,7 @@
     <section class="content mr-3 ml-3">
         <div class="row">
             <div class="col-md-6">
-                <form method="post">
+                <form method="post" action="<?=base_url('/atualizar-dados/dadosBasicos');?>">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title"><?= _('Geral'); ?></h3>
@@ -53,8 +53,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" class="btn btn-success"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></button>
-                            <button type="submit" class="btn btn-primary float-right"><i class="fas fa-check mr-1"></i> <?=_('Atualizar');?></button>
+                            <button type="button" class="btn btn-success" title="<?=_('Alterar minha senha de acesso');?>"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></button>
+                            <button type="submit" class="btn btn-primary float-right" title="<?=_('Atualizar seus dados');?>"><i class="fas fa-check mr-1"></i> <?=_('Atualizar');?></button>
                         </div>
                     </div>
                 </form>
@@ -80,7 +80,9 @@
                                     <td>Classe A</td>
                                     <td class="text-right py-0 align-middle">
                                         <div class="btn-group btn-group-sm">
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                            <form method="post" action="<?=base_url('/atualizar-dados/excluiLicenca');?>">
+                                                <button type="button" class="btn btn-danger" title="<?=_('Excluir licença de estação');?>"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -89,7 +91,9 @@
                                     <td>Especial</td>
                                     <td class="text-right py-0 align-middle">
                                         <div class="btn-group btn-group-sm">
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                            <form method="post" action="<?=base_url('/atualizar-dados/excluiLicenca');?>">
+                                                <button type="button" class="btn btn-danger" title="<?=_('Excluir licença de estação');?>"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -98,7 +102,9 @@
                                     <td>PX</td>
                                     <td class="text-right py-0 align-middle">
                                         <div class="btn-group btn-group-sm">
-                                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                            <form method="post" action="<?=base_url('/atualizar-dados/excluiLicenca');?>">
+                                                <button type="button" class="btn btn-danger" title="<?=_('Excluir licença de estação');?>"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -107,7 +113,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="button" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> <?=_('Adicionar');?></button>
+                        <button type="button" class="btn btn-primary"  title="<?=_('Adicionar nova licença de estação');?>"><i class="fas fa-plus mr-1"></i> <?=_('Adicionar');?></button>
                     </div>                    
                 </div>
                 <!-- /.card -->

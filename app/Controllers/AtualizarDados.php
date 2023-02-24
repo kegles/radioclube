@@ -13,7 +13,7 @@ class AtualizarDados extends BaseController
         return view('atualizar-dados',$data);
     }
 
-    public function atualizarPost() {
+    public function atualizarDadosBasicos() {
         $data = array(
             'email' => $this->request->getPost('email'),
             'telefone' => $this->request->getPost('telefone'),
