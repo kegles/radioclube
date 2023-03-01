@@ -88,8 +88,8 @@ class Socios extends Model
                 ];
                 session()->set($ses_data);
                 if ($lembrar) {
-                    set_cookie('email', $email, time()+(10*365*24*60*60));
-                    set_cookie('senha','hash:'.$data->senha, time()+(10*365*24*60*60));
+                    set_cookie('email', $email, 2678400);
+                    set_cookie('senha','hash:'.$data->senha, 2678400);
                 }
                 else {
                     delete_cookie('email');
@@ -164,6 +164,58 @@ class Socios extends Model
         return $this->db->query($sql)->getResultArray();        
     }
 
+    /*
+    * addEstacao
+    * @description: inclui uma nova estação para o usuário
+    * @return: <boolean> se teve sucesso
+    */
+    public function addEstacao($data) {
+        if (!(new Socios())->isLogged()) { throw new \Exception('Usuário não está logado'); }
+        elseif (empty($data['indicativo'])) { throw new \Exception('Falta indicativo da licença'); }
+        elseif (empty($data['tipo'])) { throw new \Exception('Falta tipo da licença'); }
+        else { 
+            $data['idSocio'] = session()->get()['id'];
+            return $this->db->table('socios-licencas')->insert($data); 
+        }
+    }      
+
+
+    /*
+    * getEstacao
+    * @description: busca uma estação de um usuário
+    * @param: <string> indicativo
+    * @return: <array> dados da estação
+    */
+    public function getEstacao($indicativo) {
+        if (!(new Socios())->isLogged()) { throw new \Exception('Usuário não está logado'); }
+        elseif (empty($indicativo)) { throw new \Exception('Falta indicativo da licença'); }
+        else { 
+            $sql='SELECT 
+                    idSocio, 
+                    indicativo, 
+                    tipo 
+                FROM 
+                    `socios-licencas` 
+                WHERE 
+                    idSocio='.session()->get()['id'].' AND indicativo="'.$indicativo.'"';
+            return $this->db->query($sql)->getResultArray(); 
+        }
+    } 
+
+    /*
+    * remEstacao
+    * @description: exclui estação para o usuário
+    * @param: <string> indicativo
+    * @return: <boolean> se teve sucesso
+    */
+    public function remEstacao($indicativo) {
+        if (!(new Socios())->isLogged()) { throw new \Exception('Usuário não está logado'); }
+        elseif (empty($indicativo)) { throw new \Exception('Falta indicativo da licença'); }
+        else { 
+            $where='idSocio='.session()->get()['id'].' AND indicativo="'.$indicativo.'"';
+            return $this->db->table('socios-licencas')->delete($where); 
+        }
+    }     
 
 
 }

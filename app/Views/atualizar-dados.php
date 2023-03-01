@@ -87,7 +87,8 @@
                                         <td class="text-right py-0 align-middle">
                                             <div class="btn-group btn-group-sm">
                                                 <form method="post" action="<?=base_url('/atualizar-dados/excluirEstacao');?>">
-                                                    <button type="button" class="btn btn-danger apagarLicenca" title="<?=_('Excluir licença de estação');?>"><i class="fas fa-trash"></i></button>
+                                                    <input type="hidden" name="indicativo" value="<?=$licenca['indicativo'];?>" />
+                                                    <button type="submit" class="btn btn-danger apagarLicenca" title="<?=_('Excluir licença de estação');?>"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </div>
                                         </td>
@@ -136,7 +137,7 @@
                     </div>                       
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-check mr-1"></i> <?=_('Salvar');?></button>
+                    <button type="button" class="btn btn-primary"><i class="fa fa-check mr-1"></i> <?=_('Salvar');?></button>
                 </div>
             </form>
         </div>

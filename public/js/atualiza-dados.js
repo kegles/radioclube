@@ -20,4 +20,12 @@ $(document).ready(function() {
             $('div#addLicenca input#txtModalIndicativo').focus();
         },200);
     });
+    $('#addLicenca .btn-primary').on('click',function() {
+        if ($('#addLicenca #txtModalIndicativo').val()=='') { 
+            toastr.error('Digite o indicativo da sua licença');
+            $('#addLicenca #txtModalIndicativo').focus();
+            return false;
+        }
+        $('#addLicenca form').submit();
+    });
   });

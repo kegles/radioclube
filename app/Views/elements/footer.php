@@ -1,8 +1,12 @@
-<? if (isset($css) && is_array($css)): ?>
-  <? foreach ($css as $cssfile): ?>
+<? 
+  if (isset($css) && is_array($css)) { 
+    foreach ($css as $cssfile) {
+    ?>
     <link rel="stylesheet" href="<?=$cssfile;?>" />
-  <? endforeach; ?>
-<? endif; ?>
+    <?
+    }
+  }
+?>
 <!-- AdminLTE App -->
 <script src="<?=base_url('vendor/components/jquery/jquery.min.js')?>"></script>
 <script src="<?=base_url('vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js')?>"></script>

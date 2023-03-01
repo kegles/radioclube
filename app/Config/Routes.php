@@ -35,10 +35,10 @@ $routes->post('/associe-se','Associese::associarPost');
 $routes->get('/entrar','Entrar::index');
 $routes->post('/entrar','Entrar::entrarPost');
 $routes->get('/sair','Entrar::sair');
-$routes->get('/atualizar-dados','AtualizarDados::index');
-$routes->post('/atualizar-dados/dadosBasicos','AtualizarDados::atualizarDadosBasicos');
-$routes->post('/atualizar-dados/incluirEstacao','AtualizarDados::incluirEstacao');
-$routes->post('/atualizar-dados/excluirEstacao','AtualizarDados::excluirEstacao');
+$routes->get('/atualizar-dados','AtualizarDados::index',['filter' => 'authGuard']);
+$routes->post('/atualizar-dados/dadosBasicos','AtualizarDados::atualizarDadosBasicos',['filter' => 'authGuard']);
+$routes->post('/atualizar-dados/incluirEstacao','AtualizarDados::incluirEstacao',['filter' => 'authGuard']);
+$routes->post('/atualizar-dados/excluirEstacao','AtualizarDados::excluirEstacao',['filter' => 'authGuard']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing
