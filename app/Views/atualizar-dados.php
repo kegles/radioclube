@@ -1,3 +1,10 @@
+<?
+    //retorna os toasters, pois pode ter vindo da altera-senha uma mensagem
+    if (is_array(session()->getFlashdata('toastr'))) {
+        $toastr[] = session()->getFlashdata('toastr');
+    }
+?>
+
 <?= view('elements/header.php'); ?>
 
 <div class="wrapper">
@@ -30,6 +37,22 @@
                             <h3 class="card-title"><?= _('Geral'); ?></h3>
                         </div>
                         <div class="card-body">
+
+                            <?php if (session()->getFlashdata('error')): ?>
+                            <div class="pb-2 mb-3 alert alert-danger alert-dismissible">
+                                <h5><i class="icon fas fa-ban"></i> <?=_('Erro');?></h5>
+                                <?=session()->getFlashdata('error');?>
+                            </div>
+                            <?php endif; ?>
+
+                            <?php if (session()->getFlashdata('success')): ?>
+                            <div class="pb-2 mb-3 alert alert-success alert-dismissible">
+                                <h5><i class="icon fas fa-check"></i> <?=_('Sucesso');?></h5>
+                                <?=session()->getFlashdata('success');?>
+                            </div>
+                            <?php endif; ?>
+
+
                             <div class="form-group">
                                 <label><?=_('CPF');?></label>
                                 <p><?=$cpf;?></p>
@@ -53,7 +76,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" class="btn btn-success" title="<?=_('Alterar minha senha de acesso');?>"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></button>
+                            <a class="btn btn-success" title="<?=_('Alterar minha senha de acesso');?>" href="<?=base_url('alterar-senha');?>"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></a>
                             <button type="submit" class="btn btn-primary float-right" title="<?=_('Atualizar seus dados');?>"><i class="fas fa-check mr-1"></i> <?=_('Atualizar');?></button>
                         </div>
                     </div>

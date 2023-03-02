@@ -66,4 +66,51 @@ class AtualizarDados extends BaseController
         }
     }
 
+
+    public function alterarSenha() {
+        rcStartup();
+        return view('alterar-senha');
+    }
+
+
+    public function alterarSenhaPost() {
+
+        $validacao = $this->validate([
+            'senha' => 'required|min_length[4]',
+            'novaSenha' => 'required|min_length[4]',
+            'confirmacao' => 'required|matches[novaSenha]',
+        ],[
+            'senha' => [
+                'required' => _('Digite sua senha antiga'),
+                'min_length' => _('A senha precisa ter no mínimo 4 caracteres'),
+            ],
+            'novaSenha' => [
+                'required' => _('Digite sua nova senha'),
+                'min_length' => _('A senha precisa ter no mínimo 4 caracteres'),
+            ],            
+            'confirmacao' => [
+                'required' => _('Digite novamente a senha neste campo'),
+                'matches' => _('Senha e confirmação da senha devem ser iguais'),
+            ],
+        ]);
+        if (!$validacao) {
+            return redirect()->route('alterar-senha')->with('errors', $this->validator->getErrors());
+        }
+        elseif (!password_verify($this->request->getPost('senha')??'',(new Socios())->getUserSenhaHash())) {
+            $error['senha'] = _('Senha antiga não corresponde a senha cadastrada.');
+            return redirect()->route('alterar-senha')->with('errors',$error);            
+        }
+        else {
+            if ((new Socios())->updateUserPassword($this->request->getPost('novaSenha'))) {
+                $toastr = array('type'=>'success','text'=>_('Senha alterada com sucesso!'));                
+                return redirect()->route('atualizar-dados')->with('toastr',$toastr); 
+            }   
+            else {
+                $msg = _('Ocorreu um erro desconhecido ao alterar a senha.');
+                return redirect()->route('alterar-senha')->with('error',$msg); 
+            }      
+        }        
+    }
+    
+
 }

@@ -18,6 +18,12 @@
 <!-- toastr -->
 <link rel="stylesheet" href="<?=base_url('vendor/almasaeed2010/adminlte/plugins/toastr/toastr.min.css'); ?>" />
 <script type="text/javascript" src="<?=base_url('vendor/almasaeed2010/adminlte/plugins/toastr/toastr.min.js'); ?>"></script>
+<?
+    //retorna a variável toastr da sessão para a página
+    if (count(session()->getFlashdata('toastr')??[])>0) {
+        $data = session()->getFlashdata('toastr');
+    }
+?>
 <? if (isset($toastr) && is_array($toastr)): ?>
   <script type="text/javascript">
   <? 

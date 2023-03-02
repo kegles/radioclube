@@ -2,18 +2,20 @@
 
 namespace App\Controllers;
 
+use App\Models\Socios;
+
 class Entrar extends BaseController
 {
 	
     public function index()
     {
 		rcStartup();
-        $loginData = array(
-            'email' => get_cookie('email'),
-            'senha' => get_cookie('senha'),
-            'lembrar' => ((get_cookie('email')!=null) && (get_cookie('senha')!=null))?true:false,
+        $login_data = array(
+            'email' => session()->get('lembrar_email'),
+            'senha' => session()->get('lembrar_senha'),
+            'lembrar' => (session()->get('lembrar_email') && session()->get('lembrar_senha'))?true:false,
         );
-        return view('entrar',$loginData);
+        return view('entrar',$login_data);
     }
 
     public function entrarPost() {
@@ -36,11 +38,20 @@ class Entrar extends BaseController
         else {
             $login = (new \App\Models\Socios())->login(
                     $this->request->getPost('email'),
-                    $this->request->getPost('senha'),
-                    $this->request->getPost('lembrar')!=null?true:false
+                    $this->request->getPost('senha')
             );
             if ($login == \App\Models\Socios::LOGIN_SUCCESS) {
+                if ($this->request->getPost('lembrar')!=null) {
+                    $hash_senha = (new Socios())->getUserSenhaHash();
+                    session()->set('lembrar_email', $this->request->getPost('email')??'');
+                    session()->set('lembrar_senha', 'hash:'.$hash_senha);
+                }
+                else {
+                    session()->set('lembrar_email');
+                    session()->set('lembrar_senha');
+                }
                 return redirect()->route('/');
+
             }
             else {
                 $msg = _('Erro inesperado');
@@ -57,7 +68,7 @@ class Entrar extends BaseController
 
     public function sair() {
         (new \App\Models\Socios())->logout();
-        return redirect()->route('entrar')->with('success',_('Você saiu do sistema, até logo!'));
+        return redirect()->route('entrar')->withCookies()->with('success',_('Você saiu do sistema, até logo!'));
     }
 
 }

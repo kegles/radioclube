@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\Cookie\Cookie;
+
 
 class Socios extends Model
 {
@@ -87,14 +89,6 @@ class Socios extends Model
                     'email' => $data->email
                 ];
                 session()->set($ses_data);
-                if ($lembrar) {
-                    set_cookie('email', $email, 2678400);
-                    set_cookie('senha','hash:'.$data->senha, 2678400);
-                }
-                else {
-                    delete_cookie('email');
-                    delete_cookie('senha');
-                }
             }
             return $error;
         }
@@ -216,6 +210,28 @@ class Socios extends Model
             return $this->db->table('socios-licencas')->delete($where); 
         }
     }     
+
+
+    /*
+    * getUserSenhaHash
+    * @description: busca a senha do usuário em hash
+    * @return: <string> hash
+    */    
+    public function getUserSenhaHash() {
+        $data = (new \App\Models\Socios())->where('id',session()->get()['id'])->first();
+        return $data->senha;
+    }
+
+    /*
+    * updateUserPassword
+    * @description: altera a senha do usuário
+    * @param: <string> nova senha
+    * @return: <boolean> se foi alterada
+    */    
+    public function updateUserPassword($pass) {
+        $data = array('senha'=>password_hash($pass,PASSWORD_DEFAULT));
+        return (new \App\Models\Socios())->update(session()->get()['id'],$data);
+    }
 
 
 }

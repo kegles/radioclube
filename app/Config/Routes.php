@@ -39,6 +39,8 @@ $routes->get('/atualizar-dados','AtualizarDados::index',['filter' => 'authGuard'
 $routes->post('/atualizar-dados/dadosBasicos','AtualizarDados::atualizarDadosBasicos',['filter' => 'authGuard']);
 $routes->post('/atualizar-dados/incluirEstacao','AtualizarDados::incluirEstacao',['filter' => 'authGuard']);
 $routes->post('/atualizar-dados/excluirEstacao','AtualizarDados::excluirEstacao',['filter' => 'authGuard']);
+$routes->get('/alterar-senha','AtualizarDados::alterarSenha',['filter' => 'authGuard']);
+$routes->post('/alterar-senha','AtualizarDados::alterarSenhaPost',['filter' => 'authGuard']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

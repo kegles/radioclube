@@ -13,7 +13,7 @@ class AuthGuard implements FilterInterface
         if (!(new Socios())->isLogged())
         {
             return redirect()
-                ->to('/entrar');
+                ->to('/entrar')->withCookies();
         }
     }
     
