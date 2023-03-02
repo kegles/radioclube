@@ -66,7 +66,7 @@
                                 <p><?=rcDateFromDb($dataNascimento);?></p>
                             </div>                                                    
                             <div class="form-group">
-                                <label for="txtEmail"><?=_('Endereço de e-mail');?> &nbsp;&nbsp; <small>(<?=_('será usado para entrar na Área de Sócios');?>)</small></label>
+                                <label for="txtEmail"><?=_('Endereço de e-mail');?> &nbsp;&nbsp; <small>(<?=_('será usado para entrar aqui');?>)</small></label>
                                 <input type="text" id="txtEmail" name="email" class="form-control" value="<?=$email;?>">
                             </div>  
                             <div class="form-group">

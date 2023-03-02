@@ -27,9 +27,10 @@
       <form method="post">
         <div class="pb-2 mb-3 text-center">
           <?=_('
-                Este formulário não o qualifica automaticamente como sócio do <br>
-                clube, pois sua ficha será lida, aprovada em reunião específica e,<br>
-                sua associação registrada em ata, conforme rege nosso estatuto.
+                Este formulário não o qualifica automaticamente como<br> 
+                sócio do clube, pois sua ficha será lida, aprovada em <br>
+                reunião específica e, sua associação registrada em ata, <br>
+                conforme rege nosso estatuto.
           ');?>
         </div>
         <?php if (session()->getFlashdata('error')): ?>
