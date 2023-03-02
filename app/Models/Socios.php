@@ -213,6 +213,72 @@ class Socios extends Model
 
 
     /*
+    * getIdSocioByHashRecuperacaoSenha
+    * @description: busca o id de um sócio na tabela de hashs
+    * @param: <string> hash
+    * @return: <integer> id do sócio
+    */    
+    public function getSocioByHashRecuperacaoSenha($hash) {
+        $sql='SELECT 
+                idSocio 
+                FROM 
+                    `recuperacao-senha` 
+                WHERE 
+                    hash="'.$hash.'"';
+        $data =  $this->db->query($sql)->getResultArray(); 
+        if (!$data) { return null; }
+        else {
+            return $data[0]['idSocio'];
+        }
+    }    
+
+
+    /*
+    * generateRecuperacaoHashToUser
+    * @description: gera um hash de recuperação de senha para um usuário
+    * @param: <integer> id do usuário
+    * @return: <string> hash gerado
+    */    
+    public function generateRecuperacaoHashToUser($id) {
+        $data = (new \App\Models\Socios())->where('id',$id)->first();
+        if (!$data) { return null; }
+        else {
+            $hash = substr(md5($data->email . $data->id . time()),0,32);
+            $data = array(
+                'idSocio' => $id,
+                'hash' => $hash
+            );
+            if ($this->db->table('recuperacao-senha')->insert($data)) {
+                return $hash;
+            }
+        }
+    }    
+
+
+    /*
+    * getByEmail
+    * @description: pega um sócio por e-mail
+    * @param: <string> e-mail do sócio
+    * @return: <object> Model\Socio
+    */    
+    public function getByEmail($email) {
+        $data = (new \App\Models\Socios())->where('email',$email)->first();
+        return $data;
+    }    
+
+
+    /*
+    * getById
+    * @description: pega um sócio por id
+    * @param: <string> e-mail do sócio
+    * @return: <object> Model\Socio
+    */    
+    public function getById($id) {
+        $data = (new \App\Models\Socios())->where('id',$id)->first();
+        return $data;
+    }     
+
+    /*
     * getUserSenhaHash
     * @description: busca a senha do usuário em hash
     * @return: <string> hash

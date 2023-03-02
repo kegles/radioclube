@@ -45,7 +45,7 @@
 
                             <div class="form-group">
                                 <label for="txtNovaSenha"><?=_('Nova senha');?></label>
-                                <input type="password" id="txtNovaSenha" name="novaSenha" class="form-control <?=isset(session()->getFlashdata('errors')['novaSenha']) ? 'is-invalid':''; ?>" />
+                                <input type="password" id="txtNovaSenha" name="novaSenha" class="form-control <?=isset(session()->getFlashdata('errors')['novaSenha']) ? 'is-invalid':''; ?>" maxlength="20" />
                                 <span class="error invalid-feedback">
                                     <?=session()->getFlashdata('errors')['novaSenha'] ?? ''; ?>
                                 </span>  
@@ -53,7 +53,7 @@
 
                             <div class="form-group">
                                 <label for="txtConfirmacao"><?=_('Confirmação');?> &nbsp;&nbsp; <small>(<?=_('digite a nova senha novamente');?>)</small></label>
-                                <input type="password" id="txtConfirmacao" name="confirmacao" class="form-control <?=isset(session()->getFlashdata('errors')['confirmacao']) ? 'is-invalid':''; ?>" />
+                                <input type="password" id="txtConfirmacao" name="confirmacao" class="form-control <?=isset(session()->getFlashdata('errors')['confirmacao']) ? 'is-invalid':''; ?>" maxlength="20" />
                                 <span class="error invalid-feedback">
                                     <?=session()->getFlashdata('errors')['confirmacao'] ?? ''; ?>
                                 </span>                              

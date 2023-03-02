@@ -36,12 +36,19 @@ $routes->get('/estatuto','Site::estatuto');
 $routes->get('/entrar','Entrar::index');
 $routes->post('/entrar','Entrar::entrarPost');
 $routes->get('/sair','Entrar::sair');
+$routes->get('/contato','Site::contato');
+$routes->post('/contato','Site::contatoPost');
 $routes->get('/atualizar-dados','AtualizarDados::index',['filter' => 'authGuard']);
 $routes->post('/atualizar-dados/dadosBasicos','AtualizarDados::atualizarDadosBasicos',['filter' => 'authGuard']);
 $routes->post('/atualizar-dados/incluirEstacao','AtualizarDados::incluirEstacao',['filter' => 'authGuard']);
 $routes->post('/atualizar-dados/excluirEstacao','AtualizarDados::excluirEstacao',['filter' => 'authGuard']);
 $routes->get('/alterar-senha','AtualizarDados::alterarSenha',['filter' => 'authGuard']);
 $routes->post('/alterar-senha','AtualizarDados::alterarSenhaPost',['filter' => 'authGuard']);
+$routes->get('/recuperar-senha','RecuperarSenha::index');
+$routes->post('/recuperar-senha','RecuperarSenha::indexPost');
+$routes->get('/recuperar-senha/hash/(:alphanum)','RecuperarSenha::novaSenha/$1');
+$routes->post('/recuperar-senha/hash/(:alphanum)','RecuperarSenha::novaSenhaPost/$1');
+
 
 /*
  * --------------------------------------------------------------------

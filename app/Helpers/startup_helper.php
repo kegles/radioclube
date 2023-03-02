@@ -35,3 +35,7 @@
 				return 'Não identificado';
 		}
 	}
+
+	function rcEmailTemplate($message) {
+		return $message;
+	}

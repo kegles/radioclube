@@ -13,4 +13,13 @@ class Site extends BaseController
         return view('site/estatuto');
     }
 
+
+    public function contato() {
+
+    }
+
+    public function contatoPost() {
+        
+    }
+
 }
