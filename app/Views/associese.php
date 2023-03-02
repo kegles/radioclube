@@ -139,7 +139,7 @@
             <div class="icheck-primary">
               <input type="checkbox" id="concordo" name="concordo" value="sim" <?=old('concordo')=='sim'?'checked':'';?>>
               <label for="concordo">
-               <?=sprintf(_('Eu aceito os <a href="%s" target="_blank">termos</a>'),base_url('termos-do-associado'));?>
+               <?=sprintf(_('Eu aceito os <a href="%s" target="_blank">termos</a>'),base_url('estatuto'));?>
               </label>
             </div>
           </div>

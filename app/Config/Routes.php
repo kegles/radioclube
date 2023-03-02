@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('/associe-se','Associese::index');
 $routes->post('/associe-se','Associese::associarPost');
+$routes->get('/estatuto','Site::estatuto');
 $routes->get('/entrar','Entrar::index');
 $routes->post('/entrar','Entrar::entrarPost');
 $routes->get('/sair','Entrar::sair');
@@ -41,6 +42,7 @@ $routes->post('/atualizar-dados/incluirEstacao','AtualizarDados::incluirEstacao'
 $routes->post('/atualizar-dados/excluirEstacao','AtualizarDados::excluirEstacao',['filter' => 'authGuard']);
 $routes->get('/alterar-senha','AtualizarDados::alterarSenha',['filter' => 'authGuard']);
 $routes->post('/alterar-senha','AtualizarDados::alterarSenhaPost',['filter' => 'authGuard']);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
