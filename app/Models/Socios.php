@@ -292,12 +292,19 @@ class Socios extends Model
     * updateUserPassword
     * @description: altera a senha do usuário
     * @param: <string> nova senha
+    * @param: <integer> id do usuário para alterar a senha
     * @return: <boolean> se foi alterada
     */    
-    public function updateUserPassword($pass) {
+    public function updateUserPassword($pass,$id=null) {
+        if ($id==null) { $id = session()->get()['id']; }
+        //apaga hashs de recuperação
+        $this->db->table('recuperacao-senha')->delete(array('idSocio'=>$id));
+        //altera a senha
         $data = array('senha'=>password_hash($pass,PASSWORD_DEFAULT));
-        return (new \App\Models\Socios())->update(session()->get()['id'],$data);
+        return (new \App\Models\Socios())->update($id,$data);
     }
+
+
 
 
 }

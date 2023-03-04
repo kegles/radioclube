@@ -47,7 +47,7 @@
             </div>
           </div>
           <span class="error invalid-feedback">
-            <?=session()->getFlashdata('errors')['novaSenha'] ?? ''; ?>
+            <?=session()->getFlashdata('errors')['email'] ?? ''; ?>
           </span>
         </div>        
 
@@ -71,7 +71,7 @@
             </div>
           </div>
           <span class="error invalid-feedback">
-            <?=session()->getFlashdata('errors')['novaSenha'] ?? ''; ?>
+            <?=session()->getFlashdata('errors')['confirmacao'] ?? ''; ?>
           </span>
         </div>
        

@@ -89,8 +89,43 @@ class RecuperarSenha extends BaseController
         }      
     }
 
-    public function novaSenhaPost() {
-
+    public function novaSenhaPost($hash) { //parametro vem do Routes.php
+        $validacao = $this->validate([
+            'email' => 'required|valid_email',
+            'novaSenha' => 'required|min_length[4]',
+            'confirmacao' => 'required|matches[novaSenha]',
+        ],[
+            'email' => [
+                'required' => _('Digite seu endereço de e-mail'),
+                'valid_email' => _('Digite corretamente seu e-mail'),
+            ],
+            'novaSenha' => [
+                'required' => _('Digite uma senha para acesso na área de sócios'),
+                'min_length' => _('A senha precisa ter no mínimo 4 caracteres'),
+            ],
+            'confirmacao' => [
+                'required' => _('Digite novamente a senha neste campo'),
+                'matches' => _('Senha e confirmação da senha devem ser iguais'),
+            ],
+        ]);
+        if (!$validacao) {
+            return redirect()->to(base_url('recuperar-senha/hash/'.$hash))
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
+        else {
+            $senha = $this->request->getPost('novaSenha') ?? '';
+            $socio_id = (new Socios())->getSocioByHashRecuperacaoSenha($hash);
+            if ((new Socios())->updateUserPassword($senha,$socio_id)) {
+                return redirect()->to(base_url('entrar'))
+                ->with('success', _('Senha alterada com sucesso, agora você pode acessar o sistema.'));
+            }
+            else {
+                return redirect()->to(base_url('recuperar-senha/hash/'.$hash))
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());                
+            }
+        }
     }
 
 }
