@@ -96,6 +96,16 @@ class Socios extends Model
 
 
     /*
+    * isAdministrador
+    * @description: verifica se o usuário é administrador
+    * @return: <boolean>
+    */    
+    public function isAdministrador() {
+        $admins = [1];
+        return in_array(session()->get()['id'],$admins)?true:false;
+    }    
+
+    /*
     * isLogged
     * @description: verifica se o sócio está logado
     * @return: <boolean>
@@ -138,11 +148,15 @@ class Socios extends Model
     * updateUserData
     * @description: grava os dados que são atualizáveis pelo usuário
     * @param: dados <array> dados do usuário (email,telefone)
+    * @param: id <integer> id do usuário
     * @return: <boolean> se atualizou
     */
-    public function updateUserData($data) {
-        if (!$this->isLogged()) { return false; }
-        $where = 'id='.session()->get()['id'];
+    public function updateUserData($data,$id=null) {
+        if ($id==null) {
+            if (!$this->isLogged()) { return false; }
+            $id=session()->get()['id'];
+        }
+        $where = 'id='.$id;
         return $this->db->table('socios')->update($data,$where);
     }
 

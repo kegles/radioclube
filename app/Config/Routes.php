@@ -29,15 +29,18 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+//site
+$routes->get('/estatuto','Site::estatuto');
+$routes->get('/contato','Site::contato');
+$routes->post('/contato','Site::contatoPost');
+//sistema
 $routes->get('/', 'Home::index');
 $routes->get('/associe-se','Associese::index');
 $routes->post('/associe-se','Associese::associarPost');
-$routes->get('/estatuto','Site::estatuto');
 $routes->get('/entrar','Entrar::index');
 $routes->post('/entrar','Entrar::entrarPost');
 $routes->get('/sair','Entrar::sair');
-$routes->get('/contato','Site::contato');
-$routes->post('/contato','Site::contatoPost');
 $routes->get('/atualizar-dados','AtualizarDados::index',['filter' => 'authGuard']);
 $routes->post('/atualizar-dados/dadosBasicos','AtualizarDados::atualizarDadosBasicos',['filter' => 'authGuard']);
 $routes->post('/atualizar-dados/incluirEstacao','AtualizarDados::incluirEstacao',['filter' => 'authGuard']);
@@ -48,7 +51,14 @@ $routes->get('/recuperar-senha','RecuperarSenha::index');
 $routes->post('/recuperar-senha','RecuperarSenha::indexPost');
 $routes->get('/recuperar-senha/hash/(:alphanum)','RecuperarSenha::novaSenha/$1');
 $routes->post('/recuperar-senha/hash/(:alphanum)','RecuperarSenha::novaSenhaPost/$1');
-
+$routes->get('/socios','SociosCrud::index',['filter' => 'adminGuard']);
+$routes->get('/socios/jsonGrid','SociosCrud::jsonGrid',['filter' => 'adminGuard']);
+$routes->get('/socios/insert','SociosCrud::insert',['filter' => 'adminGuard']);
+$routes->post('/socios/insert','SociosCrud::insertPost',['filter' => 'adminGuard']);
+$routes->get('/socios/update/(:num)','SociosCrud::update/$1',['filter' => 'adminGuard']);
+$routes->post('/socios/update/(:num)','SociosCrud::updatePost/$1',['filter' => 'adminGuard']);
+$routes->get('/socios/delete/(:num)','SociosCrud::delete/$1',['filter' => 'adminGuard']);
+$routes->post('/socios/delete/(:num)','SociosCrud::deletePost/$1',['filter' => 'adminGuard']);
 
 /*
  * --------------------------------------------------------------------

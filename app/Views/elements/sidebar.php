@@ -36,6 +36,21 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="min-height:800px">
 
+          <? if ((new \App\Models\Socios())->isAdministrador()): ?>
+          <li class="nav-header"><?=_('ADMINISTRAÇÃO');?></li>
+          <li class="nav-item">
+            <a href="<?=base_url('socios');?>" class="nav-link <?=uri_string()=='/socios'?'active':null;?>">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                <?=_('Sócios');?>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <hr />
+          </li>
+          <? endif; ?>
+
           <li class="nav-item">
             <a href="<?=base_url();?>" class="nav-link <?=uri_string()=='/'?'active':null;?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>

@@ -114,11 +114,15 @@ class RecuperarSenha extends BaseController
                 ->with('errors', $this->validator->getErrors());
         }
         else {
+            $email = $this->request->getPost('email') ?? '';
             $senha = $this->request->getPost('novaSenha') ?? '';
             $socio_id = (new Socios())->getSocioByHashRecuperacaoSenha($hash);
-            if ((new Socios())->updateUserPassword($senha,$socio_id)) {
+            $data = array('email'=>$email);
+            if ((new Socios())->updateUserPassword($senha,$socio_id) && (new Socios())->updateUserData($data,$socio_id)) {
+                session()->set('lembrar_email');
+                session()->set('lembrar_senha');                
                 return redirect()->to(base_url('entrar'))
-                ->with('success', _('Senha alterada com sucesso, agora você pode acessar o sistema.'));
+                ->with('success', _('Dados alterados com sucesso, agora você pode acessar o sistema.'));
             }
             else {
                 return redirect()->to(base_url('recuperar-senha/hash/'.$hash))
