@@ -68,7 +68,7 @@ class Socios extends Model
     * @return: <int> [LOGIN_SUCCESS|LOGIN_ERROR_MAIL_DOEST_EXISTS|LOGIN_ERROR_PASSWORD]
     */    
     public function login($email,$senha,$lembrar=false) {
-        $data = (new \App\Models\Socios())->where('email',$email)->where('_deleted',null)->first();
+        $data = $this->where('email',$email)->where('_deleted',null)->first();
         if (!$data) {
             return self::LOGIN_ERROR_MAIL_DOEST_EXISTS;
         }
@@ -126,6 +126,48 @@ class Socios extends Model
     }
 
     /*
+    * getSimpleIndicativo 
+    * @description: busca o indicativo do usuário por ordem de importância
+    * @return: <string> indicativo do usuário
+    */
+    public function getSimpleIndicativo() {
+        if (!$this->isLogged()) { return false; }
+        $sql = 'SELECT indicativo,tipo FROM `socios-licencas` WHERE idSocio='.session()->get()['id'];
+        $indicativo = null;
+        $classe = null;
+        //'CA','CB','CC','PX','EE','ER'
+        foreach ($this->db->query($sql)->getResultArray() as $licenca) {
+            if ($licenca['tipo']=='CA') { $indicativo=$licenca['indicativo']; break; }
+        }       
+        if ($indicativo==null) {
+            foreach ($this->db->query($sql)->getResultArray() as $licenca) {
+                if ($licenca['tipo']=='CB') { $indicativo=$licenca['indicativo']; break; }
+            }       
+        }
+        if ($indicativo==null) {
+            foreach ($this->db->query($sql)->getResultArray() as $licenca) {
+                if ($licenca['tipo']=='CC') { $indicativo=$licenca['indicativo']; break; }
+            }       
+        }
+        if ($indicativo==null) {
+            foreach ($this->db->query($sql)->getResultArray() as $licenca) {
+                if ($licenca['tipo']=='PX') { $indicativo=$licenca['indicativo']; break; }
+            }       
+        }
+        if ($indicativo==null) {
+            foreach ($this->db->query($sql)->getResultArray() as $licenca) {
+                if ($licenca['tipo']=='EE') { $indicativo=$licenca['indicativo']; break; }
+            }       
+        }
+        if ($indicativo==null) {
+            foreach ($this->db->query($sql)->getResultArray() as $licenca) {
+                if ($licenca['tipo']=='ER') { $indicativo=$licenca['indicativo']; break; }
+            }       
+        }
+        return $indicativo; 
+    }
+
+    /*
     * getUserData
     * @description: busca dos dados que são atualizáveis do usuário
     * @return array of data
@@ -142,6 +184,7 @@ class Socios extends Model
             $return['nome'] = $data->nome;
             $return['cpf'] = $data->cpf;
             $return['dataNascimento'] = $data->dataNascimento;
+            $return['indicativo'] = $this->getSimpleIndicativo();
         }
         return $return;
     }

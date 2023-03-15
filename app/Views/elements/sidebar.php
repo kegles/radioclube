@@ -28,7 +28,7 @@
           <i class="fa fa-user" style="color:#c2c7d0"></i>
         </div>
         <div class="info">
-          <a href="<?=base_url('atualizar-dados');?>" class="d-block"><?=session()->get()['nome'];?></a>
+          <a href="<?=base_url('atualizar-dados');?>" class="d-block"><?=(new \App\Models\Socios())->getSimpleIndicativo();?></a>
         </div>
       </div>
       

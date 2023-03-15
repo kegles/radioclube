@@ -48,12 +48,18 @@ class dbv6 extends Migration {
                 'type' => 'INT',
                 'constraint' => 11,
             ],
+            'idSocio' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'default' => '0'
+            ],
             'nome' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
             'indicativo' => [
                 'type' => 'VARCHAR',
+                'null' => true,
                 'constraint' => 10,
             ],
         ]);

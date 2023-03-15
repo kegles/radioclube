@@ -34,6 +34,8 @@ $routes->set404Override();
 $routes->get('/estatuto','Site::estatuto');
 $routes->get('/contato','Site::contato');
 $routes->post('/contato','Site::contatoPost');
+$routes->get('/participe','Site::participe');
+$routes->post('/participe','Site::participePost');
 //sistema
 $routes->get('/', 'Home::index');
 $routes->get('/associe-se','Associese::index');

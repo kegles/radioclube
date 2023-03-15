@@ -34,10 +34,10 @@
                 <table id="sociosTable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th><?=_('CPF');?></th>
+                            <th class="text-center"><?=_('CPF');?></th>
                             <th><?=_('Nome');?></th>
                             <th><?=_('E-mail');?></th>
-                            <th><?=_('Telefone');?></th>
+                            <th class="text-center"><?=_('Telefone');?></th>
                             <th></th>
                         </tr>
                     </thead>            

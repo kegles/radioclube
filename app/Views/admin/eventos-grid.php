@@ -35,9 +35,9 @@
                     <thead>
                         <tr>
                             <th><?=_('Título');?></th>
-                            <th><?=_('Data');?></th>
-                            <th><?=_('Ativo');?></th>
-                            <th><?=_('Participantes');?></th>
+                            <th class="text-center"><?=_('Data');?></th>
+                            <th class="text-center"><?=_('Ativo');?></th>
+                            <th class="text-center"><?=_('Participantes');?></th>
                             <th></th>
                         </tr>
                     </thead>            

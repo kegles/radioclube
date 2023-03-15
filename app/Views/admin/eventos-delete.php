@@ -40,7 +40,7 @@
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4">
-                    <a href="<?=base_url('socios');?>" class="btn btn-warning float-left"><i class="fa fa-arrow-left mr-2"></i> <?=_('<b>Não</b>, voltar');?></a>
+                    <a href="<?=base_url('eventos');?>" class="btn btn-warning float-left"><i class="fa fa-arrow-left mr-2"></i> <?=_('<b>Não</b>, voltar');?></a>
                     <button type="submit" class="btn btn-success float-right"><i class="fa fa-check mr-2"></i> <?=_('<b>Sim</b>, apagar');?></button>
                 </div>
                 <div class="col-sm-4">
@@ -52,6 +52,6 @@
 </div>
 
 <? $footerdata['js'][] = base_url('vendor/igorescobar/jquery-mask-plugin/dist/jquery.mask.min.js'); ?>
-<? $footerdata['js'][] = base_url('public/js/socios-ficha.js'); ?>
+<? $footerdata['js'][] = base_url('public/js/eventos-ficha.js'); ?>
 
 <?= view('elements/footer.php',$footerdata); ?>

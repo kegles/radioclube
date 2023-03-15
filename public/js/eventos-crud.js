@@ -8,9 +8,9 @@ $(document).ready(function() {
         },    
         columns:[
                 {"data":1},
-                {"data":2},
-                {"data":3},
-                {"data":4},
+                {"data":2,"className":"text-center"},
+                {"data":3,"className":"text-center"},
+                {"data":4,"className":"text-center"},
                 {"data":0,"className":"text-center"}
         ],  
         columnDefs: [

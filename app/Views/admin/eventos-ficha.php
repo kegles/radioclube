@@ -64,6 +64,19 @@
                     </div>  
                 </div>
             </div>
+            <? if (isset($_PARTICIPANTES) && is_array($_PARTICIPANTES) && (count($_PARTICIPANTES)>0)): ?>
+            <div class="row">
+                <div class="col-sm-12"><hr /></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12"><h6 class="ml-1 text-bold"><?=_('PARTICIPANTES');?> (<?=count($_PARTICIPANTES);?>)</h6></div>
+            </div>
+                <? foreach ($_PARTICIPANTES as $index => $participante): ?>
+                    <div class="row">
+                        <div class="col-sm-12"><h6 class="ml-1"><?=$index+1;?> - <?=$participante['nome'];?> (<?=$participante['indicativo'];?>)</h6></div>
+                    </div>
+                <? endforeach; ?>
+            <? endif; ?>
             <div class="row">
                 <div class="col-sm-12"><hr /></div>
             </div>

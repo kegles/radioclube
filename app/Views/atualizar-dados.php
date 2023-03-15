@@ -160,7 +160,7 @@
                     </div>                       
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success"><i class="fa fa-check mr-1"></i> <?=_('Salvar');?></button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check mr-1"></i> <?=_('Salvar');?></button>
                 </div>
             </form>
         </div>

@@ -19,19 +19,7 @@ class EventosCrud extends BaseController
 
     public function jsonGrid() {
       $db = db_connect();
-      $builder_sub = $db->
-                  table('eventos-participantes')->select('count(*)')->where('idEvento','eventos.id');
-      $builder = $db->
-                  table('eventos')->
-                  select('
-                          id, 
-                          titulo, 
-                          date_format(data,"%d/%m/%Y"), 
-                          IF(ativo=TRUE,"'._('Sim').'","'._('Não').'")
-                  ')->
-                  selectSubquery($builder_sub,'_PARTICIPANTES')->
-                  where('_deleted',null);
-      return DataTable::of($builder)->toJson();      
+      return DataTable::of((new Eventos())->getGridJson())->toJson();      
     }
 
     public function insert() 
@@ -54,7 +42,7 @@ class EventosCrud extends BaseController
       else {
         $this->data = $this->request->getPost();
         $this->dataTransforms();
-        (new Eventos())->insert($this->request->getPost());
+        (new Eventos())->insert($this->data);
         $toastr = array('type'=>'success','text'=>_('Evento inserido com sucesso!'));                
         return redirect()->route('eventos')->with('toastr',$toastr); 
       }
@@ -63,6 +51,7 @@ class EventosCrud extends BaseController
     public function update($cid) 
     {
       $this->data = (array)(new Eventos())->getById($cid);
+      $this->data['_PARTICIPANTES'] = (new Eventos())->getParticipantesEvento($cid);
       return view('admin/eventos-ficha',$this->data);
     }
 
@@ -97,6 +86,7 @@ class EventosCrud extends BaseController
       return redirect()->route('eventos')->with('toastr',$toastr); 
     }
 
+
     private function validaInfos($cid) {
         $val =  $this->validate([
           'ativo' => 'required',
@@ -123,5 +113,7 @@ class EventosCrud extends BaseController
     private function dataTransforms() {
       $this->data['data'] = rcDateToDb($this->data['data']);
     }
+
+
 
 }

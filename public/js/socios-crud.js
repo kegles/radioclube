@@ -7,10 +7,10 @@ $(document).ready(function() {
             url: 'public/js/datatables-ptBR.json',
         },    
         columns:[
-                {"data":1},
+                {"data":1,"className":"text-center"},
                 {"data":2},
                 {"data":3},
-                {"data":4},
+                {"data":4,"className":"text-center"},
                 {"data":0,"className":"text-center"}
         ],  
         columnDefs: [
