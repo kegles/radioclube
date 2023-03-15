@@ -54,9 +54,17 @@ class Site extends BaseController
             ),
         );
         if ((new Eventos())->addEventoParticipante($this->data)) {
-            session()->setFlashdata('success',_('Presença confirmada, até logo!'));
+            if (!(new Socios())->isLogged()) {
+                session()->setFlashdata('success',_('Presença confirmada, até logo!'));
+                return $this->participe();
+            }
+            else {
+                return redirect('/');
+            }
         }
-        return $this->participe();
+        else {
+            die(_('Ocorreu um erro ao gravar sua participação no evento, tente novamente.'));
+        }
     }    
 
     public function contato() {
