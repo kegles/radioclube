@@ -76,8 +76,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <a class="btn btn-success" title="<?=_('Alterar minha senha de acesso');?>" href="<?=base_url('alterar-senha');?>"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></a>
-                            <button type="submit" class="btn btn-primary float-right" title="<?=_('Atualizar seus dados');?>"><i class="fas fa-check mr-1"></i> <?=_('Atualizar');?></button>
+                            <a class="btn btn-primary" title="<?=_('Alterar minha senha de acesso');?>" href="<?=base_url('alterar-senha');?>"><i class="fas fa-key mr-1"></i> <?=_('Alterar minha senha');?></a>
+                            <button type="submit" class="btn btn-success float-right" title="<?=_('Atualizar seus dados');?>"><i class="fas fa-check mr-1"></i> <?=_('Atualizar');?></button>
                         </div>
                     </div>
                 </form>
@@ -160,7 +160,7 @@
                     </div>                       
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-check mr-1"></i> <?=_('Salvar');?></button>
+                    <button type="button" class="btn btn-success"><i class="fa fa-check mr-1"></i> <?=_('Salvar');?></button>
                 </div>
             </form>
         </div>

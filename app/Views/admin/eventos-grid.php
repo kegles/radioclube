@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><?= _('Sócios'); ?></h1>
+                    <h1><?= _('Eventos'); ?></h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -31,13 +31,13 @@
     <section class="content mr-3 ml-3">
         <div class="row">
             <div class="col-12">
-                <table id="sociosTable" class="table table-bordered table-striped">
+                <table id="eventosTable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th><?=_('CPF');?></th>
-                            <th><?=_('Nome');?></th>
-                            <th><?=_('E-mail');?></th>
-                            <th><?=_('Telefone');?></th>
+                            <th><?=_('Título');?></th>
+                            <th><?=_('Data');?></th>
+                            <th><?=_('Ativo');?></th>
+                            <th><?=_('Participantes');?></th>
                             <th></th>
                         </tr>
                     </thead>            
@@ -65,6 +65,6 @@
 <? $footerdata['css'][] = base_url('vendor/almasaeed2010/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>
 <? $footerdata['css'][] = base_url('vendor/almasaeed2010/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>
 
-<? $footerdata['js'][] = base_url('public/js/socios-crud.js'); ?>
+<? $footerdata['js'][] = base_url('public/js/eventos-crud.js'); ?>
 
 <?= view('elements/footer.php',$footerdata); ?>

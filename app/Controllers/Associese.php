@@ -17,7 +17,7 @@ class Associese extends BaseController
         $validacao = $this->validate([
             'cpf' => 'required|is_unique[socios.cpf]',
             'nome' => 'required',
-            'dataNascimento' => 'required|valid_date',
+            'dataNascimento' => 'required|valid_date[d/m/Y]',
             'email' => 'required|valid_email|is_unique[socios.email]',
             'telefone' => 'required',
             'indicativo' => 'required|min_length[4]',

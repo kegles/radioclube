@@ -25,7 +25,7 @@ class Socios extends Model
     protected $updatedField = '_updated';
     protected $deletedField = '_deleted';
 
-    protected $allowedFields = ['email','senha','nome','telefone','cpf','dataNascimento','indicativo'];
+    protected $allowedFields = ['ativo','aprovado','email','senha','nome','telefone','cpf','dataNascimento','indicativo'];
 
     protected $validationRules = [];
     protected $validationMessages = [];
@@ -38,6 +38,8 @@ class Socios extends Model
     * @return: <boolean> se incluiu ou não
     */
     public function newSocio($data) {
+        //nome formatado (ucfirst)
+        $data['nome'] = rcFormataNome($data['nome']);
         //senha é criptografada
         $data['senha'] = password_hash($data['senha'],PASSWORD_DEFAULT);
         //data de nascimento vai para formato do MySQL
@@ -66,7 +68,7 @@ class Socios extends Model
     * @return: <int> [LOGIN_SUCCESS|LOGIN_ERROR_MAIL_DOEST_EXISTS|LOGIN_ERROR_PASSWORD]
     */    
     public function login($email,$senha,$lembrar=false) {
-        $data = (new \App\Models\Socios())->where('email',$email)->first();
+        $data = (new \App\Models\Socios())->where('email',$email)->where('_deleted',null)->first();
         if (!$data) {
             return self::LOGIN_ERROR_MAIL_DOEST_EXISTS;
         }
@@ -101,7 +103,7 @@ class Socios extends Model
     * @return: <boolean>
     */    
     public function isAdministrador() {
-        $admins = [1];
+        $admins = [1,2,10];
         return in_array(session()->get()['id'],$admins)?true:false;
     }    
 
@@ -131,7 +133,7 @@ class Socios extends Model
     public function getUserData($onlyUpdateable=true) {
         if (!$this->isLogged()) { return false; } 
         $userId = session()->get()['id'];
-        $data = (new \App\Models\Socios())->where('id',$userId)->first();
+        $data = (new \App\Models\Socios())->where('id',$userId)->where('_deleted',null)->first();
         $return = array(
             'telefone' => $data->telefone,
             'email' => $data->email,
@@ -276,7 +278,7 @@ class Socios extends Model
     * @return: <object> Model\Socio
     */    
     public function getByEmail($email) {
-        $data = (new \App\Models\Socios())->where('email',$email)->first();
+        $data = (new \App\Models\Socios())->where('email',$email)->where('_deleted',null)->first();
         return $data;
     }    
 
@@ -288,7 +290,7 @@ class Socios extends Model
     * @return: <object> Model\Socio
     */    
     public function getById($id) {
-        $data = (new \App\Models\Socios())->where('id',$id)->first();
+        $data = (new \App\Models\Socios())->where('id',$id)->where('_deleted',null)->first();
         return $data;
     }     
 

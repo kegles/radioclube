@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'radioclube',
+        'database' => 'py3rcp_sistema',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

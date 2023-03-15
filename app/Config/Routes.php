@@ -59,6 +59,15 @@ $routes->get('/socios/update/(:num)','SociosCrud::update/$1',['filter' => 'admin
 $routes->post('/socios/update/(:num)','SociosCrud::updatePost/$1',['filter' => 'adminGuard']);
 $routes->get('/socios/delete/(:num)','SociosCrud::delete/$1',['filter' => 'adminGuard']);
 $routes->post('/socios/delete/(:num)','SociosCrud::deletePost/$1',['filter' => 'adminGuard']);
+$routes->get('/eventos','EventosCrud::index',['filter' => 'adminGuard']);
+$routes->get('/eventos/jsonGrid','EventosCrud::jsonGrid',['filter' => 'adminGuard']);
+$routes->get('/eventos/insert','EventosCrud::insert',['filter' => 'adminGuard']);
+$routes->post('/eventos/insert','EventosCrud::insertPost',['filter' => 'adminGuard']);
+$routes->get('/eventos/update/(:num)','EventosCrud::update/$1',['filter' => 'adminGuard']);
+$routes->post('/eventos/update/(:num)','EventosCrud::updatePost/$1',['filter' => 'adminGuard']);
+$routes->get('/eventos/delete/(:num)','EventosCrud::delete/$1',['filter' => 'adminGuard']);
+$routes->post('/eventos/delete/(:num)','EventosCrud::deletePost/$1',['filter' => 'adminGuard']);
+
 
 /*
  * --------------------------------------------------------------------

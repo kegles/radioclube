@@ -13,5 +13,7 @@
   <link rel="stylesheet" href="<?=base_url('vendor/almasaeed2010/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css');?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url('vendor/almasaeed2010/adminlte/dist/css/adminlte.min.css');?>">
+  <!-- base url -->
+  <script>var base_url = '<?php echo base_url() ?>';</script>
 </head>
 <body class="sidebar-mini" style="height:auto;">

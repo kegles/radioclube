@@ -10,10 +10,12 @@
 	}
 
 	function rcDateToDb($date) {
+		if (empty($date)) { return null; }
 		return date_create_from_format(_('d/m/Y'),$date)->format('Y-m-d');
 	} 
 
 	function rcDateFromDb($date) {
+		if (empty($date)) { return null; }
 		return date_create_from_format(_('Y-m-d'),$date)->format('d/m/Y');		
 	}
 
@@ -38,4 +40,14 @@
 
 	function rcEmailTemplate($message) {
 		return $message;
+	}
+
+	function rcFormataNome($nome) {
+		$ignorar = array( 'do', 'dos', 'da', 'das', 'de' );
+		$array = explode(' ', strtolower( $nome ) );
+		$out = '';
+		foreach ($array as $ar) {
+		   $out .= ( in_array ( $ar, $ignorar ) ? $ar : ucfirst( $ar ) ).' ';
+		}
+		return trim( $out );	
 	}

@@ -32,6 +32,8 @@
         </div>
       </div>
       
+      <? $uri = new \CodeIgniter\HTTP\URI(current_url(true)); $uri = $uri->getSegment(1); ?>      
+      
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="min-height:800px">
@@ -39,7 +41,7 @@
           <? if ((new \App\Models\Socios())->isAdministrador()): ?>
           <li class="nav-header"><?=_('ADMINISTRAÇÃO');?></li>
           <li class="nav-item">
-            <a href="<?=base_url('socios');?>" class="nav-link <?=uri_string()=='/socios'?'active':null;?>">
+            <a href="<?=base_url('socios');?>" class="nav-link <?=$uri=='socios'?'active':null;?>">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 <?=_('Sócios');?>
@@ -47,12 +49,20 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?=base_url('eventos');?>" class="nav-link <?=$uri=='eventos'?'active':null;?>">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                <?=_('Eventos');?>
+              </p>
+            </a>
+          </li>          
+          <li class="nav-item">
             <hr />
           </li>
           <? endif; ?>
 
           <li class="nav-item">
-            <a href="<?=base_url();?>" class="nav-link <?=uri_string()=='/'?'active':null;?>">
+            <a href="<?=base_url();?>" class="nav-link <?=$uri==''?'active':null;?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 <?=_('Painel do associado');?>
@@ -61,7 +71,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?=base_url('sair');?>" class="nav-link <?=uri_string()=='/sair'?'active':null;?>">
+            <a href="<?=base_url('sair');?>" class="nav-link <?=$uri=='/sair'?'active':null;?>">
             <i class="nav-icon fas fa-solid fa-unlock"></i>
               <p>
                 <?=_('Sair do sistema');?>
