@@ -76,6 +76,22 @@
                         <!-- /.card-body -->
                         </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h4 class="text-bold"><?=_('Plano de gestão');?></h4>
+                                    <p><?=_('Conheça o plano de gestão do clube, o documento que norteia nossas atividades.');?></p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="<?=base_url('public/PLANO_GESTAO.pdf');?>" target="_blank" class="small-box-footer"><?=_('Ler online');?> <i class="ml-2 fas fa-arrow-right"></i></a>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
