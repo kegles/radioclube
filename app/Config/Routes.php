@@ -38,6 +38,8 @@ $routes->get('/participe','Site::participe');
 $routes->post('/participe','Site::participePost');
 //sistema
 $routes->get('/', 'Home::index');
+$routes->get('/biblioteca','Home::biblioteca');
+$routes->get('/fotos','Home::fotos');
 $routes->get('/associe-se','Associese::index');
 $routes->post('/associe-se','Associese::associarPost');
 $routes->get('/entrar','Entrar::index');

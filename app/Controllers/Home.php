@@ -28,4 +28,39 @@ class Home extends BaseController
         return view('home',$this->data);
       }
     }
+
+    public function biblioteca()
+    {
+      if (!(new \App\Models\Socios())->isLogged()) {
+        return redirect()->route('entrar');
+      }
+      else {
+        rcStartup();
+        $this->data = array_merge(
+                $this->data,
+                (new Socios())->getUserData(false),
+        );
+        return view('admin/biblioteca',$this->data);
+      }
+    }
+
+
+    public function fotos()
+    {
+      if (!(new \App\Models\Socios())->isLogged()) {
+        return redirect()->route('entrar');
+      }
+      else {
+        rcStartup();
+        $this->data = array_merge(
+                $this->data,
+                (new Socios())->getUserData(false),
+        );
+        return view('admin/fotos',$this->data);
+      }
+    }
+
+
+
+
 }
