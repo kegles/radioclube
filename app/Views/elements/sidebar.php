@@ -71,7 +71,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?=base_url('biblioteca');?>" class="nav-link <?=$uri=='/biblioteca'?'active':null;?>">
+            <a href="<?=base_url('biblioteca');?>" class="nav-link <?=$uri=='biblioteca'?'active':null;?>">
             <i class="nav-icon fa fa-book-reader"></i>
               <p>
                 <?=_('Biblioteca');?>
@@ -80,7 +80,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?=base_url('fotos');?>" class="nav-link <?=$uri=='/fotos'?'active':null;?>">
+            <a href="<?=base_url('fotos');?>" class="nav-link <?=$uri=='fotos'?'active':null;?>">
             <i class="nav-icon fa fa-camera-retro"></i>
               <p>
                 <?=_('Álbum de fotos');?>
@@ -89,7 +89,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="<?=base_url('sair');?>" class="nav-link <?=$uri=='/sair'?'active':null;?>">
+            <a href="<?=base_url('sair');?>" class="nav-link <?=$uri=='sair'?'active':null;?>">
             <i class="nav-icon fas fa-solid fa-unlock"></i>
               <p>
                 <?=_('Sair do sistema');?>
