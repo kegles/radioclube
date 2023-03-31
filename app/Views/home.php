@@ -33,7 +33,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><h4><?=_('Eventos');?></h4></h3>
+                            <h3><?=_('Eventos');?></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
@@ -82,10 +82,10 @@
                             <div class="small-box bg-info">
                                 <div class="inner">
                                     <h4 class="text-bold"><?=_('Plano de gestão');?></h4>
-                                    <p><?=_('Conheça o plano de gestão do clube, o documento que norteia nossas atividades.');?></p>
+                                    <p><?=_('Conheça o plano de gestão do clube');?></p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-bag"></i>
+                                    <i class="ion ion-ios-book"></i>
                                 </div>
                                 <a href="<?=base_url('public/PLANO_GESTAO.pdf');?>" target="_blank" class="small-box-footer"><?=_('Ler online');?> <i class="ml-2 fas fa-arrow-right"></i></a>
                             </div>                            
@@ -96,6 +96,8 @@
         </div>
     </section>
 </div>
+
+<? $footerdata['css'][] = base_url('vendor/driftyco/ionicons/css/ionicons.min.css'); ?>
 
 <? $footerdata['js'][] = base_url('public/js/home-eventos.js'); ?>
 

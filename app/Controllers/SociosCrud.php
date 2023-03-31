@@ -10,6 +10,7 @@ class SociosCrud extends BaseController
 {
 	
     private $data = [];
+    private $data_licencas = [];
 
     public function index()
     {
@@ -32,6 +33,8 @@ class SociosCrud extends BaseController
       $this->data['email']=null;
       $this->data['telefone']=null;
       $this->data['dataNascimento'] = null;
+      $this->data['_LICENCAS'] = [];
+      $this->data['_LICENCAS_TIPOS'] =  (new Socios())->getLicencasTipos();
       return view('admin/socios-ficha',$this->data);
     }
 
@@ -47,7 +50,10 @@ class SociosCrud extends BaseController
       else {
         $this->data = $this->request->getPost();
         $this->dataTransforms();
-        (new Socios())->insert($this->request->getPost());
+        $SocioAdapter = new Socios();
+        $SocioAdapter->insert($this->request->getPost());
+        $socio_id = $SocioAdapter->getInsertID();
+        $SocioAdapter->updateSocioLicencas($socio_id,$this->data_licencas);
         $toastr = array('type'=>'success','text'=>_('Sócio inserido com sucesso!'));                
         return redirect()->route('socios')->with('toastr',$toastr); 
       }
@@ -56,6 +62,8 @@ class SociosCrud extends BaseController
     public function update($cid) 
     {
       $this->data = (array)(new Socios())->getById($cid);
+      $this->data['_LICENCAS'] = (array)(new Socios())->getLicencasFrom($cid);
+      $this->data['_LICENCAS_TIPOS'] =  (new Socios())->getLicencasTipos();
       return view('admin/socios-ficha',$this->data);
     }
 
@@ -71,7 +79,9 @@ class SociosCrud extends BaseController
       else {
         $this->data = $this->request->getPost();
         $this->dataTransforms();
-        (new Socios())->update($cid,$this->data);
+        $SocioAdapter = new Socios();
+        $SocioAdapter->update($cid,$this->data);
+        $SocioAdapter->updateSocioLicencas($cid,$this->data_licencas);
         $toastr = array('type'=>'success','text'=>_('Sócio atualizado com sucesso!'));                
         return redirect()->route('socios')->with('toastr',$toastr); 
       }
@@ -134,6 +144,10 @@ class SociosCrud extends BaseController
 
     private function dataTransforms() {
       $this->data['dataNascimento'] = rcDateToDb($this->data['dataNascimento']);
+      unset($this->data['_LICENCAS'][0]); //view insert field
+      $this->data_licencas = $this->data['_LICENCAS'];
+      unset($this->data['_LICENCAS']);
+      unset($this->data['_LICENCAS_TIPOS']);
     }
 
 }

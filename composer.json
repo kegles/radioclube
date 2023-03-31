@@ -10,7 +10,8 @@
         "almasaeed2010/adminlte": "~3.2",
         "components/jquery": "^3.6",
         "igorescobar/jquery-mask-plugin": "^1.14",
-        "hermawan/codeigniter4-datatables": "^0.6.1"
+        "hermawan/codeigniter4-datatables": "^0.6.1",
+        "driftyco/ionicons": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",

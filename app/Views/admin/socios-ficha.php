@@ -109,6 +109,50 @@
                 <div class="col-sm-12"><hr /></div>
             </div>
             <div class="row">
+                <div class="col-sm-12"> 
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <b><?=_('Indicativo');?></b>
+                        </div> 
+                        <div class="col-sm-2">
+                            <b><?=_('Tipo');?></b>
+                        </div> 
+                    </div>                    
+                    <? foreach ($_LICENCAS as $index => $licenca):  ?>
+                        <div class="row mt-2 licenca-row" data-index="<?=$index+1;?>">
+                           <div class="col-sm-3">
+                                <input type="text" name="_LICENCAS[<?=$index+1;?>][indicativo]" class="form-control text-uppercase" value="<?=$licenca['indicativo'];?>" />
+                           </div> 
+                           <div class="col-sm-2">
+                                <select name="_LICENCAS[<?=$index+1;?>][tipo]" class="form-control">
+                                    <? foreach ($_LICENCAS_TIPOS as $ti => $tl): ?>
+                                    <option value="<?=$ti;?>" <?=($ti==$licenca['tipo'])?'selected':'';?>><?=$tl;?></option>
+                                    <? endforeach; ?>
+                                </select>
+                           </div> 
+                           <div class="col-sm-1">
+                                <a href="javascript:;" class="btn btn-danger licencas-del" title="<?=_('Apagar licença');?>"><i class="fa fa-trash"></i></a>
+                           </div>
+                        </div>
+                    <? endforeach; ?>
+                    <div class="row licenca-new mt-2" data-index="0">
+                        <div class="col-sm-3">
+                            <input type="text" name="_LICENCAS[0][indicativo]" class="form-control text-uppercase" value="" />
+                        </div> 
+                        <div class="col-sm-2">
+                            <select name="_LICENCAS[0][tipo]" class="form-control">
+                                <? foreach ($_LICENCAS_TIPOS as $ti => $tl): ?>
+                                <option value="<?=$ti;?>"><?=$tl;?></option>
+                                <? endforeach; ?>
+                            </select>
+                        </div> 
+                        <div class="col-sm-1">
+                            <a href="javascript:;" class="btn btn-primary licencas-add" title="<?=_('Adicionar licença');?>"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-12"><hr /></div>
             </div>
             <div class="row">
@@ -127,6 +171,6 @@
 </div>
 
 <? $footerdata['js'][] = base_url('vendor/igorescobar/jquery-mask-plugin/dist/jquery.mask.min.js'); ?>
-<? $footerdata['js'][] = base_url('public/js/socios-ficha.js'); ?>
+<? $footerdata['js'][] = base_url('public/js/socios-ficha.js?v=2'); ?>
 
 <?= view('elements/footer.php',$footerdata); ?>

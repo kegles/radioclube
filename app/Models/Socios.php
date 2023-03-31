@@ -31,6 +31,25 @@ class Socios extends Model
     protected $validationMessages = [];
     protected $skipValidation = false;
 
+    public $tipos_licenca = ['CA','CB','CC','PX','EE','ER'];
+    public $tipos_licenca_labels = [];
+
+    /*
+    * constructor
+    */
+    function __construct() {
+        parent::__construct();
+        //popula os labels com nomes traduzidos
+        $this->tipos_licenca_labels = array(
+            _('Classe A'),
+            _('Classe B'),
+            _('Classe C'),
+                _('PX'),
+            _('Estação especial'),
+            _('Estação repetidora')
+        );
+    }
+
     /*
     * newSocio
     * @description: Adiciona um novo sócio na base de dados
@@ -45,7 +64,9 @@ class Socios extends Model
         //data de nascimento vai para formato do MySQL
         $data['dataNascimento'] = rcDateToDb($data['dataNascimento']);
         //indicativo vai pra tabela socios-licencas
-        $indicativo = strtoupper($data['indicativo']);
+        $indicativo = $data['indicativo'];
+        $indicativo = strtoupper($indicativo);
+        $indicativo = str_replace(chr(32),'',$indicativo);
         unset($data['indicativo']);
         //insere os dados
         $result=false;
@@ -213,7 +234,17 @@ class Socios extends Model
     */
     public function getUserLicencas() {
         if (!$this->isLogged()) { return false; }
-        $sql = 'SELECT indicativo,tipo FROM `socios-licencas` WHERE idSocio='.session()->get()['id'];
+        return $this->getLicencasFrom(session()->get()['id']);   
+    }
+
+    /*
+    * getLicencasFrom
+    * @description: busca as licenças de estação (indicativos) do usuário indicado
+    * @param: <int> id do usuário
+    * @return: <array> dados de indicativos
+    */    
+    public function getLicencasFrom($id) {
+        $sql = 'SELECT indicativo,tipo FROM `socios-licencas` WHERE idSocio='.$id.' ORDER BY tipo ASC';
         return $this->db->query($sql)->getResultArray();        
     }
 
@@ -363,7 +394,34 @@ class Socios extends Model
         return (new \App\Models\Socios())->update($id,$data);
     }
 
+    /*
+    * getLicencasTipos
+    * @description: pega os tipos de licença
+    * @return: <array> tipos de licença de estação
+    */ 
+    public function getLicencasTipos() {
+        $tipos = [];
+        foreach ($this->tipos_licenca as $ti => $tl) {
+            $tipos[$tl] = $this->tipos_licenca_labels[$ti];
+        }
+        return $tipos;
+    }
 
+
+    /*
+    * updateSocioLicencas
+    * @description: atualiza as licenças de um sócio
+    * @param: <int> id do usuario
+    * @param: <array[indicativo|tipo]> licenças do usuário
+    */ 
+    public function updateSocioLicencas($cid,$licencas) {
+        $this->db->table('socios-licencas')->delete(array('idSocio'=>$cid));
+        foreach ($licencas as $licenca) {
+            $data = array_merge(array('idSocio'=>$cid),$licenca);     
+            $this->db->table('socios-licencas')->insert($data);    
+        }
+        
+    }
 
 
 }
