@@ -423,5 +423,32 @@ class Socios extends Model
         
     }
 
+    /*
+    * getProximosAniversarios
+    * @description: Busca os próximos 5 aniversários
+    * @return array<nome|data> of aniversários (string)
+    */
+    public function getProximosAniversarios() {
+        $sql='SELECT 
+                    nome,
+                    DATE_FORMAT(dataNascimento,"%d/%m") AS `data` 
+                FROM 
+                    `socios` 
+                WHERE 
+                    DATE_ADD(dataNascimento, 
+                    INTERVAL YEAR(CURDATE())-YEAR(dataNascimento)
+                            + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(dataNascimento),1,0)
+                    YEAR)  
+                    BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)
+                ORDER BY
+                    dataNascimento ASC
+        ';
+        $data =  $this->db->query($sql)->getResultArray(); 
+        if (!$data) { return null; }
+        else {
+            return $data;
+        }        
+    }
+
 
 }

@@ -20,7 +20,8 @@ class Home extends BaseController
         $this->data = array_merge(
                 $this->data,
                 (new Socios())->getUserData(false),
-                array('eventos'=>(new Eventos())->getAtivos())
+                array('eventos'=>(new Eventos())->getAtivos()),
+                array('aniversarios'=>(new Socios())->getProximosAniversarios()),
         );
         foreach ($this->data['eventos'] as $index => $evento) {
           $this->data['eventos'][$index]['_PARTICIPANTES'] = (new Eventos())->getParticipantesEvento($evento['id']);

@@ -48,7 +48,7 @@
                             <tbody>
                                 <? if (!isset($eventos) || !is_array($eventos) || count($eventos)==0): ?>
                                     <tr>
-                                        <td colspan="3" class="text-center"><?=_('Sem eventos programados...');?></td>
+                                        <td colspan="3" class="text-center"><?=_('Sem eventos programados.');?></td>
                                     </tr>
                                 <? else: ?>
                                     <? foreach ($eventos as $evento): ?>
@@ -74,7 +74,39 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><?=_('Próximos aniversários');?></h3>
                         </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th style="width:65%"><?=_('Sócio');?></th>
+                                    <th style="width:35%" class="text-center"><?=_('Data');?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <? if (!isset($aniversarios) || !is_array($aniversarios) || count($aniversarios)==0): ?>
+                                    <tr>
+                                        <td colspan="2" class="text-center"><?=_('Nenhum aniversário nos próximos 30 dias.');?></td>
+                                    </tr>
+                                <? else: ?>
+                                    
+                                    <? foreach ($aniversarios as $aniversario): ?>
+                                    <tr>
+                                        <td style="width:65%"><?=$aniversario['nome'];?></td>
+                                        <td style="width:35%" class="text-center"><?=$aniversario['data'];?></td>
+                                    </tr>       
+                                    <? endforeach; ?>
+                                <? endif; ?>                         
+                            </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="row">
