@@ -156,13 +156,13 @@
                 <div class="col-sm-12"><hr /></div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <a href="<?=base_url('socios');?>" class="btn btn-warning float-left"><i class="fa fa-arrow-left mr-2"></i> <?=_('<b>Cancelar</b> e voltar');?></a>
                     <button type="submit" class="btn btn-success float-right"><i class="fa fa-check mr-2"></i> <?=_('<b>Salvar</b> e continuar');?></button>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 </div>                
             </div>
         </section>
